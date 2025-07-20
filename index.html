@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NO-STRESS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-0 p-0 min-h-screen flex flex-col items-center justify-start space-y-8">
+
+  <img src="./img/banner.jpg" alt="バナー" class="w-full max-w-xl rounded-lg shadow-md" />
+
+  <div class="text-center space-y-6">
+        <h1 class="text-3xl font-bold text-gray-800">村人</h1>
+
+        <img src="./img/villager.jpg" alt="村人" class="mx-auto w-40 h-40 object-cover rounded-full shadow-md border-4 border-white" />
+
+        <button id="hitButton" class="px-10 py-6 bg-green-600 text-white text-2xl font-bold rounded-full shadow-lg active:scale-90 transition-transform duration-100">
+            叩く
+        </button>
+
+        <p id="counter" class="text-lg text-gray-700 font-semibold">叩いた回数: 0</p>
+        <p class="text-sm text-gray-500">連打してストレス発散しよう</p>
+        <p class="text-4xl font-semibold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-transparent bg-clip-text animate-pulse">
+            Ver 1.0.0
+        </p>
+    </div>
+
+    <audio class="villager-sound" src="sounds/villager1.mp3"></audio>
+    <audio class="villager-sound" src="sounds/villager2.mp3"></audio>
+    <audio class="villager-sound" src="sounds/villager3.mp3"></audio>
+    <audio class="villager-sound" src="sounds/villager4.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
