@@ -6,12 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let count = 0;
 
+    // スマホ、音声流れない対策
+    button.addEventListener('touchstart', () => {
+        sounds.forEach((audio) => {
+            audio.muted = true;
+            audio.play().then(() => {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.muted = false;
+            }).catch(() => {});
+        });
+    }, { once: true });
+
+
     button.addEventListener('click', () => {
-    // ランダムに音声を選択
+        // ランダムに音声流れる
         const index = Math.floor(Math.random() * sounds.length);
         const audio = sounds[index];
 
-        // iOSなどで安定再生するための処理
         audio.pause();
         audio.currentTime = 0;
         audio.play().catch((error) => {
