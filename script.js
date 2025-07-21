@@ -1,34 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const sounds = Array.from(document.querySelectorAll('.villager-sound'));
     const button = document.querySelector('#hitButton');
     const counterText = document.querySelector('#counter');
-    const sounds = Array.from(document.querySelectorAll('.villager-sound'));
     const errorLog = document.querySelector('#errorLog');
-
     let count = 0;
+    let initialized = false;
 
-    // スマホ、音声流れない対策
-    button.addEventListener('touchstart', () => {
-        sounds.forEach((audio) => {
-            audio.muted = true;
-            audio.play().then(() => {
-                audio.pause();
-                audio.currentTime = 0;
-                audio.muted = false;
-            }).catch(() => {});
-        });
-    }, { once: true });
+    // 明示的に音声を事前ロード
+    sounds.forEach(audio => audio.load());
 
+    button.addEventListener('click', async () => {
+        // iOSの初回制限対策
+        if (!initialized) {
+            for (const audio of sounds) {
+                try {
+                    audio.volume = 0;
+                    await audio.play();
+                    audio.pause();
+                    audio.currentTime = 0;
+                    audio.volume = 1.0;
+                } catch (e) {
+                    console.log('iOS初期化スキップ:', e.message);
+                }
+            }
+            initialized = true;
+        }
 
-    button.addEventListener('click', () => {
-        // ランダムに音声流れる
+        // 通常の再生処理
         const index = Math.floor(Math.random() * sounds.length);
         const audio = sounds[index];
 
-        audio.pause();
-        audio.currentTime = 0;
-        audio.play().catch((error) => {
+        try {
+            audio.pause();
+            audio.currentTime = 0;
+            await audio.play();
+        } catch (error) {
             errorLog.textContent = '再生に失敗: ' + error.message;
-        });
+        }
 
         // カウント更新
         count++;
