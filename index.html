@@ -2,18 +2,19 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>NO-STRESS</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="m-0 p-0 min-h-screen flex flex-col items-center justify-start space-y-8">
 
   <img src="./img/banner.jpg" alt="バナー" class="w-full max-w-xl rounded-lg shadow-md" />
+  <div id="errorLog" class="text-red-500 text-sm mt-2"></div>
 
   <div class="text-center space-y-6">
         <h1 class="text-3xl font-bold text-gray-800">村人</h1>
 
-        <img src="./img/villager.jpg" alt="村人" class="mx-auto w-40 h-40 object-cover rounded-full shadow-md border-4 border-white" />
+        <img src="./img/villager.jpg" alt="村人" class="mx-auto w-24 h-24 object-cover rounded-full shadow-md border-4 border-white" />
 
         <button id="hitButton" class="px-10 py-6 bg-green-600 text-white text-2xl font-bold rounded-full shadow-lg active:scale-90 transition-transform duration-100">
             叩く
